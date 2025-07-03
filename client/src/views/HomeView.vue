@@ -61,7 +61,7 @@ import {
 import { ref, computed, defineAsyncComponent } from 'vue'
 
 // 绑定当前激活的组件 key
-const activeComponent = ref('PostsList')
+const activeComponent = ref('PostList')
 
 // 映射菜单 index 到组件
 const componentMap = {  // 懒加载，返回值是Promise
