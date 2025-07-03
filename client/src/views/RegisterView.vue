@@ -2,7 +2,7 @@
   <div class="auth-container">
     <h2>User Register</h2>
     <el-form :model="form" label-width="auto" label-position="top">
-      <el-form-item label="username">
+      <el-form-item label="username" required>
         <el-input v-model="form.username" placeholder="Input username" />
       </el-form-item>
       <el-form-item label="password">

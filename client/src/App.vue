@@ -7,7 +7,7 @@
         router="true"
         :ellipsis="false"
       >
-        <el-menu-item index="0">
+        <el-menu-item index="/login">
           <img
             style="width: 100px"
             src="./assets/element-plus-logo.svg"
