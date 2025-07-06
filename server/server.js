@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 // 引入路由模块
 import postRoutes from './routes/post.js'
 import userRoutes from './routes/user.js'
+import uploadRoutes from './routes/upload.js'
 
 // 加载 .env 文件中的变量（如 MONGO_URL, PORT）
 // 只需要加载一次即可，整个Node项目中都可以用process.env了
@@ -27,6 +28,7 @@ app.use('/uploads', express.static('uploads'))
 // 注册接口路由
 app.use('/api/post', postRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/upload', uploadRoutes)
 
 // 获取端口号，优先从 .env 中取
 const PORT = process.env.PORT || 3000

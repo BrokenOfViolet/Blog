@@ -1,5 +1,4 @@
-import User from '../models/Post.js'
-import Post from '../models/User.js'
+import Post from '../models/Post.js'
 
 export const createPost = async(req, res) => {
     try {
@@ -10,7 +9,10 @@ export const createPost = async(req, res) => {
         }
         
         const newPost = new Post({
-            title, content, author, cover
+            title,
+            content,
+            cover,
+            author: req.user.userId
         })
         
         const savedPost = await newPost.save()
@@ -21,7 +23,7 @@ export const createPost = async(req, res) => {
     }
 }
 
-export const getAllPosts = async(req, res) => {
+export const showPosts = async(req, res) => {
     try {
         const posts = await Post.find()
             .populate('author', 'username') // 联表查作者字段

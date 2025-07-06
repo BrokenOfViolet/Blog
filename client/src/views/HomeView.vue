@@ -27,10 +27,10 @@
                 <el-icon><Tools /></el-icon>
                 <span>WorkBench</span>
             </template>
-            <el-menu-item>
+            <el-menu-item index="1">
                 Function-1
             </el-menu-item>
-            <el-menu-item>
+            <el-menu-item index="2">
                 Function-2
             </el-menu-item>
         </el-sub-menu>

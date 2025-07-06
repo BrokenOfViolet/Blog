@@ -29,7 +29,6 @@ export const login = async(req, res) => {
             username, password
         })
 
-        const savedUser = new newUser.save()
         res.status(200).json({
             message: 'Login success',
             token,

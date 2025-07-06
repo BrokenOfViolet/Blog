@@ -1,30 +1,30 @@
 <template>
   <div>
     <h2>Post List</h2>
-    <el-card v-for="post in posts" :key="post.id" shadow="hover" class="post-card">
+    <el-card v-for="post in posts" :key="post._id" shadow="hover" class="post-card">
         <template #header>{{ post.title }}</template>
         <p>{{ post.content }}</p>
-        <template #footer>{{ post.author }}</template>
+        <template #footer>{{ post.author.username }}-{{ post.createdAt }}</template>
     </el-card>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-async function getPostList() {
-    try {
-        const res = axios.get('api/posts')
-    } catch(err) {
+const posts = ref([])
 
+async function fetchPosts() {
+    try {
+        const res = await axios.get('api/post/show')
+        posts.value = res.data || []
+    } catch(err) {
+      console.log('[ERROR] can not get posts', err)
     }
 }
-const posts = ref([
-  { title: 'Vue 入门实践', author: 'Alice', createdAt: '2025-07-03' },
-  { title: '深入 Element Plus', author: 'Bob', createdAt: '2025-07-02' },
-  { title: '使用 Vite 构建项目', author: 'Charlie', createdAt: '2025-07-01' },
-])
+
+onMounted(fetchPosts)
 </script>
 
 <style scoped>

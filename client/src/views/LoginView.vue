@@ -51,7 +51,7 @@ async function handleLogin() {
   }
 
   try {
-    const res = await axios.post('http://localhost:3000/api/user/login', {
+    const res = await axios.post('/api/user/login', {
       username: form.username,
       password: form.password
     })
@@ -59,20 +59,20 @@ async function handleLogin() {
     const user = res.data.user
 
     ElNotification.success({
-      title: '登录成功',
-      message: res.data.message || '欢迎回来',
+      title: 'Login success',
+      message: res.data.message || 'Welcome back',
       position: 'top-right'
     })
 
     // 存储登录信息
-    localStorage.setItem('username', user.username)
-    localStorage.setItem('userId', user._id)
-
-    // 跳转主页
-    router.push('/')
+    if (res.data.token) {
+      localStorage.setItem('token', res.data.token)
+      // 跳转主页
+      router.push('/')
+    }
   } catch (err) {
     ElNotification.error({
-      title: '登录失败',
+      title: 'Login fail',
       message: err.response?.data?.message || '用户名或密码错误',
       position: 'top-right'
     })
